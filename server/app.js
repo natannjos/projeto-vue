@@ -56,6 +56,12 @@ router.post('/login', (req, res) => {
 	});
 })
 
+router.get('/get-users', (req, res) => {
+	db.selectAll((err, rows) => {
+		if (err) return res.status(500).send('Erro no servidor');
+		res.status(200).send(rows)
+	});
+})
 app.use(router)
 
 let port = process.env.PORT || 3000;

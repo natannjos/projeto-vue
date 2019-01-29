@@ -4,18 +4,16 @@
 			<table class="table">
 				<thead>
 						<tr>
-						<th scope="col">Usuario</th>
 						<th scope="col">Id</th>
-						<th scope="col">Titulo</th>
-						<th scope="col">Completo?</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Email</th>
 						</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in $store.getters.funcionarios" :key="item.id">
-						<th scope="row">{{ item.userId }}</th>
 						<td>{{ item.id }}</td>
-						<td>{{ item.title }}</td>
-						<td>{{ item.completed }}</td>
+						<td>{{ item.name }}</td>
+						<td>{{ item.email }}</td>
 					</tr>
 			</tbody>
 		</table>
@@ -36,7 +34,7 @@ export default {
 	mounted:
 		function(){
 			if(localStorage.getItem('jwt') != null){
-			this.$http.get('https://jsonplaceholder.typicode.com/todos')
+			this.$http.get('http://localhost:3000/get-users')
 				.then(
 					(response) => {
 						let funcionarios = JSON.parse(response.bodyText).slice(0, 20)
